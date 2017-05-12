@@ -1,0 +1,9 @@
+#!bin/csh -f
+
+setenv PATH /u/home/bclary/eg1analysis/SKIMprotocol/analysiscode_v2.2/analysiscode_v2.1:$PATH  
+setenv JLAB_VERSION 2.0
+setenv JLAB_ROOT /site/12gev_phys
+source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
+
+set runNumber = $1
+set analysisTask = $2

@@ -1,0 +1,11 @@
+#!/bin/csh -f
+
+#Setting appropriate Environment Variables for the code to run.
+#This is done by sourcing the binary to exectute on the farm.
+setenv PATH /u/home/bclary/eg1analysis/SKIMprotocol/analysiscode_v2.2/analysiscode_v2.1:$PATH  
+setenv JLAB_VERSION 2.0
+setenv JLAB_ROOT /site/12gev_phys
+source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
+set PID = 'PID'
+set DVCS = 'DVCS'
+set MC = 'MC'

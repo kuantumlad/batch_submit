@@ -1,0 +1,33 @@
+#!/bin/csh -f
+
+#set environment for the code
+#in particular source the binary to execute on the farm
+setenv PATH /u/home/bclary/eg1analysis/biselli_code/biselli_eg1dvcs/nt22filter:$PATH
+#setenv PATH /u/home/bclary/eg1analysis/biselli_code/biselli_eg1dvcs/dap:$PATH
+setenv JLAB_VERSION 2.0
+setenv JLAB_ROOT /site/12gev_phys
+source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
+
+set runNumber = $2
+set analysisTask = $1                                     
+set inputfile = $2
+set outputfile = $inputfile:t:r
+#executable program that will create Biselli output files 
+set dvcsout = "DVCS$outputfile.root"
+echo $dvcsout
+set dvcsoutdirectory = "/lustre/expphy/volatile/halla/sbs/bclary/eg1analysis/biselli_dvcsout"
+
+if ($analysisTask == "PID") then
+    echo " >>Task: PID"
+    nt22filter -r $runNumber -min 0 -max 150 -location 0 -fctype 0
+    mv *.root /lustre/expphy/volatile/halla/sbs/bclary/eg1analysis/biselli_output/
+else if ( $analysisTask == "DVCS") then
+    echo " >>Task: DVCS"
+    dap $inputfile $dvcsout 
+    mv *.root $dvcsoutdirectory
+endif 
+
+
+
+ 
+

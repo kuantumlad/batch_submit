@@ -1,0 +1,18 @@
+#!/bin/csh -f
+
+#set environment for the code
+#in particular source the binary to execute on the farm
+setenv PATH /u/home/bclary/eg1analysis/SKIMprotocol/analysiscode_v2.1:$PATH  
+setenv JLAB_VERSION 2.0
+setenv JLAB_ROOT /site/12gev_phys
+source $JLAB_ROOT/$JLAB_VERSION/ce/jlab.csh
+
+set input_fullpath = $1                                                                                                                                                 
+set input_file = $input_fullpath:t #t grabs the tail of the input path
+echo $input_file
+
+#executable program that will create PIDroot22 files 
+./stage1PID /lustre/expphy/work/hallb/claseg1dvcs/pass1/v3/root/ $input_file
+
+#mv PID*.root /lustre/expphy/volatile/halla/sbs/bclary/eg1analysis/eg1dvcs_output/pid_output/
+
